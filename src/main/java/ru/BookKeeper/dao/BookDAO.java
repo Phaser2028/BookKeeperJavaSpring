@@ -27,8 +27,6 @@ public class BookDAO {
         return jdbcTemplate.query("SELECT * FROM book", new BeanPropertyRowMapper<>(Book.class));
     }
 
-
-
     public Book show(int id) {
         return jdbcTemplate.query("SELECT * FROM book WHERE id=?", new Object[]{id}, new BeanPropertyRowMapper<>(Book.class))
                 .stream().findAny().orElse(null);
@@ -45,32 +43,6 @@ public class BookDAO {
     public void delete(int id) {
         jdbcTemplate.update("DELETE FROM book WHERE id=?", id);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //свободные книги
-    public List<Book> freeBooks() {
-        return jdbcTemplate.query("SELECT * FROM book WHERE person_id IS NULL;", new BeanPropertyRowMapper<>(Book.class));
-    }
-
-
-
-
-
-
-
-
-
 
     //получить владельца по id книги
     public Optional<Person> getBookOwner(int id){//id книги
