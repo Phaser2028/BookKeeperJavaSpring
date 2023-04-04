@@ -8,10 +8,7 @@ public class Book {
     private String title;
     @NotEmpty(message = "имя автора не должно быть пустым")
     private String author;
-
-
     private int publication_year;
-
 
     public Book(int id, String title, String author, int publication_year) {
         this.id = id;
