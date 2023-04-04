@@ -5,6 +5,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -18,11 +20,12 @@ import javax.sql.DataSource;
 
 @Configuration
 @ComponentScan("ru.BookKeeper")
-//@PropertySource("classpath:database.properties")
+@PropertySource("classpath:database.properties")
 @EnableWebMvc
 public class SpringConfig implements WebMvcConfigurer {
 
     private final ApplicationContext applicationContext;
+    private Environment environment;
 
     @Autowired
     public SpringConfig(ApplicationContext applicationContext) {
@@ -60,10 +63,10 @@ public class SpringConfig implements WebMvcConfigurer {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
-        dataSource.setDriverClassName();
-        dataSource.setUrl();
-        dataSource.setUsername();
-        dataSource.setPassword();
+        dataSource.setDriverClassName(environment.getProperty("driver"));
+        dataSource.setUrl(environment.getProperty("url"));
+        dataSource.setUsername(environment.getProperty("username"));
+        dataSource.setPassword(environment.getProperty("password"));
 
         return dataSource;
     }
