@@ -74,24 +74,11 @@ public class BooksController {
     }
 
 
-
-
-
     @PostMapping("/{id}/back")
     public String getBack(@PathVariable("id") int id,@ModelAttribute("person") Person person,Model model){
-
-
         bookDAO.getBackBook(id);//забрать книгу обратно
-
         return "redirect:/books";
     }
-
-
-
-
-
-
-
 
     @GetMapping("/new")
     public String newBook(@ModelAttribute("book") Book book) {

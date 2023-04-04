@@ -19,7 +19,6 @@ public class PeopleController {
     private final PersonDAO personDAO;
     private final BookDAO bookDAO;
 
-
     @Autowired
     public PeopleController(PersonDAO personDAO, BookDAO bookDAO) {
         this.personDAO = personDAO;
